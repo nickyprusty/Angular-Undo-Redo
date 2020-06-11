@@ -1,0 +1,45 @@
+<div class="row">
+  <div class="col">
+    <form class="card" [formGroup]="productForm" (ngSubmit)="onSubmit(productForm)">
+      <div>
+        <div class="form-group">
+          <label>Name</label>
+          <input type="text" class="form-control" formControlName="name" placeholder="name"
+            [ngClass]="{ 'bd-error': fc.name.errors && (fc.name.dirty || fc.name.touched) }" (change)="addToPastHistory()">
+          <small class="text-error" *ngIf="fc.name.errors && (fc.name.dirty || fc.name.touched)">Mandatory
+            field.</small>
+        </div>
+        <div class="form-group">
+          <label>Description</label>
+          <input type="text" (change)="addToPastHistory()" class="form-control" formControlName="description" placeholder="description"
+            [ngClass]="{ 'bd-error': fc.description.errors && (fc.description.dirty || fc.description.touched) }">
+          <small class="text-error"
+            *ngIf="fc.description.errors && (fc.description.dirty || fc.description.touched)">Mandatory field.</small>
+        </div>
+        <div class="form-group">
+          <label>Picture</label>
+          <input type="text" (change)="addToPastHistory()" class="form-control" formControlName="picture" placeholder="image url"
+            [ngClass]="{ 'bd-error': fc.picture.errors && (fc.picture.dirty || fc.picture.touched) }">
+          <small class="text-error" *ngIf="fc.picture.errors && (fc.picture.dirty || fc.picture.touched)">Please enter
+            valid url.</small>
+        </div>
+        <div class="form-group">
+          <a class="button outline secondary" (click)="loadGallery()">
+            <i *ngIf="isLoading" class="fa fa-spinner fa-spin"></i> Choose from gallery</a>
+          <ul *ngIf="gallery" class="row">
+            <li *ngFor="let item of gallery" class="col">
+              <span class="button" (click)="selectImage(item.imageUrl)">
+                <img src="{{item.imageUrl}}" alt="">
+              </span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="form-group mt-3 mb-3 text-center">
+        <button type="submit" [disabled]="!this.productForm.valid" class="button primary">
+          <i *ngIf="isLoading" class="fa fa-spinner fa-spin"></i> Submit
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

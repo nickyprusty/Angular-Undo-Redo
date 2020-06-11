@@ -1,0 +1,22 @@
+:root {
+  --color-primary: rgb(20, 116, 133);
+  --color-lightGrey: #e2e5eb;
+  --color-grey: #747681;
+  --color-darkGrey: #3f4144;
+  --color-error: #d43939;
+  --color-success: #28bd14;
+  --grid-maxWidth: 120rem;
+  --grid-gutter: 2rem;
+  --font-size: 1.6rem;
+  --font-family: "Helvetica Neue", sans-serif;
+}
+
+.row {
+  margin-top: 1em;
+}
+      ul {
+        padding-left: 0;
+      }
+      li {
+        list-style: none;
+      }
