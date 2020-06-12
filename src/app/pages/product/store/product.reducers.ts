@@ -32,11 +32,14 @@ export const reducers = createReducer(
     const previous = state.pastActionHistory[state.pastActionHistory.length - 2];
     const newPast = state.pastActionHistory.slice(0, state.pastActionHistory.length - 1);
     const newFuture = state.currentState;
+    // const previous = state.pastActionHistory[0];
+    // const newPast = state.pastActionHistory.slice(1);
+    // const newFuture = state.currentState;
     return {
       ...state,
       currentState: previous,
       pastActionHistory: newPast,
-      futureActionAvailable: [...state.futureActionAvailable, newFuture]
+      futureActionAvailable: [newFuture, ...state.futureActionAvailable]
     };
   }),
 
@@ -44,10 +47,13 @@ export const reducers = createReducer(
     const newCurrentState = state.futureActionAvailable[state.futureActionAvailable.length - 1];
     const newFuture = state.futureActionAvailable.slice(0, state.futureActionAvailable.length - 1);
     const newPast = state.currentState;
+    // const newCurrentState = state.futureActionAvailable[0];
+    // const newFuture = state.futureActionAvailable.slice(1);
+    // const newPast = state.currentState;
     return {
       ...state,
       currentState: newCurrentState,
-      pastActionHistory: [...state.pastActionHistory, newPast],
+      pastActionHistory: [newPast, ...state.pastActionHistory],
       futureActionAvailable: newFuture
     };
   }),
