@@ -13,11 +13,6 @@ export const addToCurrentState = createAction(
   props<{ currentState: any }>()
 );
 
-export const addToFutureHistory = createAction(
-  '[History] Future Activity',
-  props<{ futureHistory: any }>()
-);
-
 export const Undo = createAction(
   '[Hitory] Undo'
 );

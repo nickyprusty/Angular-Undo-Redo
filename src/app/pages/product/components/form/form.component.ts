@@ -48,7 +48,7 @@ export class FormComponent implements OnInit {
 
   addToPastHistory() {
     this.store.dispatch(addToCurrentState({ currentState: this.productForm.value }));
-    this.store.dispatch(addToPastHistory({ pastHistory: this.productForm.value }));
+    // this.store.dispatch(addToPastHistory({ pastHistory: this.productForm.value }));
   }
 
   get fc() {
@@ -110,6 +110,5 @@ export class FormComponent implements OnInit {
     if (this.data) {
       this.productForm.patchValue(this.data);
     }
-    this.store.dispatch(addToCurrentState({ currentState: this.productForm.value }));
   }
 }

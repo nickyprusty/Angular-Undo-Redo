@@ -28,8 +28,6 @@ import { Undo, Redo } from '../../pages/product/store/product.actions';
               [routerLinkActiveOptions]="{ exact: false }"
               >Products</a
             >
-            <a class="btn btn-link" (click)="undo()"><i class="fas fa-undo"></i></a>
-            <a class="btn btn-link" (click)="redo()"><i class="fas fa-redo"></i></a>
           </div>
         </div>
       </div>
@@ -54,18 +52,12 @@ export class NavigationComponent implements OnInit {
     this.store.select(selectState).subscribe((state) => {
       console.log(state);
       this.pastActionHistory = state.pastActionHistory;
-      this.futureActionAvailable = state.futureActionAvailable;
     });
   }
 
-  undo() {
-    if (this.pastActionHistory.length !== 0) {
-      this.store.dispatch(Undo());
-    }
-  }
-  redo() {
-    if (this.futureActionAvailable.length !== 0) {
-      this.store.dispatch(Redo());
-    }
-  }
+  // undo() {
+  //   if (this.pastActionHistory.length !== 0) {
+  //     this.store.dispatch(Undo());
+  //   }
+  // }
 }

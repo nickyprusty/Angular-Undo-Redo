@@ -14,14 +14,8 @@ export const reducers = createReducer(
     });
   }),
 
-  on(ProductActions.addToFutureHistory, (state, action) => {
-    return Object.assign({}, state, {
-      futureActionAvailable: [...state.futureActionAvailable, action.futureHistory]
-    });
-  }),
-
   on(ProductActions.addToCurrentState, (state, action) => {
-    localStorage.setItem('currentState', action.currentState);
+    localStorage.setItem('currentState', JSON.stringify(action.currentState));
     return {
       ...state,
       currentState: action.currentState,
@@ -31,32 +25,13 @@ export const reducers = createReducer(
   on(ProductActions.Undo, (state) => {
     const previous = state.pastActionHistory[state.pastActionHistory.length - 2];
     const newPast = state.pastActionHistory.slice(0, state.pastActionHistory.length - 1);
-    const newFuture = state.currentState;
-    // const previous = state.pastActionHistory[0];
-    // const newPast = state.pastActionHistory.slice(1);
-    // const newFuture = state.currentState;
     return {
       ...state,
       currentState: previous,
       pastActionHistory: newPast,
-      futureActionAvailable: [newFuture, ...state.futureActionAvailable]
     };
   }),
 
-  on(ProductActions.Redo, (state) => {
-    const newCurrentState = state.futureActionAvailable[state.futureActionAvailable.length - 1];
-    const newFuture = state.futureActionAvailable.slice(0, state.futureActionAvailable.length - 1);
-    const newPast = state.currentState;
-    // const newCurrentState = state.futureActionAvailable[0];
-    // const newFuture = state.futureActionAvailable.slice(1);
-    // const newPast = state.currentState;
-    return {
-      ...state,
-      currentState: newCurrentState,
-      pastActionHistory: [newPast, ...state.pastActionHistory],
-      futureActionAvailable: newFuture
-    };
-  }),
 
   on(ProductActions.loadProductsSuccess, (state, action) => {
     return {

@@ -5,14 +5,12 @@ export interface ProductState {
   selectedProduct: Product;
   error: string | null;
   pastActionHistory: any[];
-  futureActionAvailable: any[];
   currentState: any;
 }
 
 export const initialProductState: ProductState = {
   pastActionHistory: [],
-  futureActionAvailable: [],
-  currentState: null,
+  currentState: JSON.parse(localStorage.getItem('currentState')),
   products: null,
   selectedProduct: null,
   error: null,

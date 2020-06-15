@@ -35,8 +35,3 @@ export const selectCurrentState = createSelector(
   selectProductsFeature,
   (state: ProductState) => state.currentState
 );
-
-export const selectAvailableActions = createSelector(
-  selectProductsFeature,
-  (state: ProductState) => state.futureActionAvailable
-);
